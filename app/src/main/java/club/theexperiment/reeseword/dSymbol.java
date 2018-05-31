@@ -3,10 +3,10 @@ package club.theexperiment.reeseword;
 public class dSymbol extends Die {
     //Creates object of Die class and sets number of dice and sides
     public dSymbol(){
-        setSides(31);
+        setSides(32);
     }
 
-    String options = "~!@#$%^&*()_+-=[]{}\"|';:/?.>,<";
+    String options = "~!@#$%^&*()_+-=[]{}\"|';:/\\?.>,<";
 
     public void roll(int r) {
         String temp = "";

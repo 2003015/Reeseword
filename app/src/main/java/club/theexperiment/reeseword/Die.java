@@ -35,7 +35,6 @@ public abstract class Die {
     //Generate array of random ints when rolled
 
     public void roll(int r) {
-        boolean cont = true;
         rolls = new int[this.sides];
         for (int x : rolls) {
             rolls[x] = 0;
