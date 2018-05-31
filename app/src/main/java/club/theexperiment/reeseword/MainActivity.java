@@ -1,6 +1,5 @@
 package club.theexperiment.reeseword;
 
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         final Switch numberSwitch = findViewById(R.id.numberSwitch);
         final Switch symbolSwitch = findViewById(R.id.symbolSwitch);
         Button button = findViewById(R.id.button);
-        final String numRollsString = ((EditText) findViewById(R.id.editText)).getText().toString();
         final Die capital = new dCapital();
         final Die lower = new dLower();
         final Die number = new dNumber();
@@ -79,33 +77,52 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                password = "";
+                try {
+                    String numRollsString = ((EditText) findViewById(R.id.editText)).getText().toString();
+                    password = "";
 
-                int numRolls = Integer.parseInt(numRollsString);
+                    int numRolls = Integer.parseInt(numRollsString);
 
-                int checked = 0;
+                    int checked = 0;
 
-                if (symbolSwitchStatus) checked++;
-                if (numberSwitchStatus) checked++;
-                if (capitalSwitchStatus) checked++;
-                if (lowerSwitchStatus) checked++;
+                    if (symbolSwitchStatus) checked++;
+                    if (numberSwitchStatus) checked++;
+                    if (capitalSwitchStatus) checked++;
+                    if (lowerSwitchStatus) checked++;
 
-                int eachNum = numRolls / checked;
+                    if (checked > 0) {
 
-                int extra = 0;
+                    int eachNum = numRolls / checked;
 
-                while (eachNum * checked < numRolls) {
-                    extra++;
-                }
+                    int extra = 0;
 
-                if (lowerSwitchStatus) { lower.roll(eachNum+extra); password+=lower.getWord(); }
-                if (capitalSwitchStatus) { capital.roll(eachNum); password+=capital.getWord(); }
-                if (numberSwitchStatus) { number.roll(eachNum); password+=number.getWord(); }
-                if (symbolSwitchStatus) { symbol.roll(eachNum); password+=symbol.getWord(); }
+                    while (eachNum * checked < numRolls) {
+                        extra++;
+                    }
 
-                text.setText(password);
+                    if (lowerSwitchStatus) {
+                        lower.roll(eachNum + extra);
+                        password += lower.getWord();
+                    }
+                    if (capitalSwitchStatus) {
+                        capital.roll(eachNum);
+                        password += capital.getWord();
+                    }
+                    if (numberSwitchStatus) {
+                        number.roll(eachNum);
+                        password += number.getWord();
+                    }
+                    if (symbolSwitchStatus) {
+                        symbol.roll(eachNum);
+                        password += symbol.getWord();
+                    }
 
-            }
+                    text.setText(password);
+
+                }}
+            catch (NumberFormatException e) {
+
+            }}
 
         });
     }

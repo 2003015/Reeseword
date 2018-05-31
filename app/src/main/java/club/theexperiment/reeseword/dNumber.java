@@ -9,8 +9,8 @@ public class dNumber extends Die {
     public void roll(int r) {
         String temp = "";
         super.roll(r);
-        for (int i: getRolls()) {
-            for (int x = 0; x < i; x++) {
+        for (int i = 0; i < getRolls().length; i++) {
+            for (int x = 0; x < getRolls()[i]; x++) {
                 temp += Integer.toString(i);
             }
         }
