@@ -94,11 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                     int eachNum = numRolls / checked;
 
-                    int extra = 0;
-
-                    while (eachNum * checked < numRolls) {
-                        extra++;
-                    }
+                    int extra = numRolls - eachNum * checked;
 
                     if (lowerSwitchStatus) {
                         lower.roll(eachNum + extra);
